@@ -5,6 +5,27 @@ namespace LegacyRenewalApp
     public class SubscriptionRenewalService
     {
         
+        private IBillingService _billingService;
+        private ISubscriptionPlanRepository _planRepository;
+        private ICustomerRepository _customerRepository;
+        private IInputManager _inputManager;
+        
+        public SubscriptionRenewalService() 
+            : this(new LegacyBillingServiceAdapter(), 
+                new SubscriptionPlanRepository(), 
+                new CustomerRepository(),
+                new  InputManager())
+        {
+        }
+
+        public SubscriptionRenewalService(IBillingService billingService, ISubscriptionPlanRepository planRepository, ICustomerRepository customerRepository,  IInputManager inputManager)
+        {
+            _billingService = billingService;
+            _planRepository = planRepository;
+            _customerRepository = customerRepository;
+            _inputManager = inputManager;
+        }
+
         public RenewalInvoice CreateRenewalInvoice(
             int customerId,
             string planCode,
@@ -13,25 +34,8 @@ namespace LegacyRenewalApp
             bool includePremiumSupport,
             bool useLoyaltyPoints)
         {
-            if (customerId <= 0)
-            {
-                throw new ArgumentException("Customer id must be positive");
-            }
-
-            if (string.IsNullOrWhiteSpace(planCode))
-            {
-                throw new ArgumentException("Plan code is required");
-            }
-
-            if (seatCount <= 0)
-            {
-                throw new ArgumentException("Seat count must be positive");
-            }
-
-            if (string.IsNullOrWhiteSpace(paymentMethod))
-            {
-                throw new ArgumentException("Payment method is required");
-            }
+            
+            _inputManager.CheckInput(customerId, planCode, seatCount, paymentMethod);
 
             string normalizedPlanCode = planCode.Trim().ToUpperInvariant();
             string normalizedPaymentMethod = paymentMethod.Trim().ToUpperInvariant();
