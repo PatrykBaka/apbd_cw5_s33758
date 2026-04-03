@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\baka\\Desktop\\zadanie_refactoring_renewal\\LegacyRenewalApp\\LegacyRenewalApp.csproj": {}
+    "C:\\Users\\User\\Desktop\\apbd_cw5_s33758\\LegacyRenewalApp\\LegacyRenewalApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\baka\\Desktop\\zadanie_refactoring_renewal\\LegacyRenewalApp\\LegacyRenewalApp.csproj": {
+    "C:\\Users\\User\\Desktop\\apbd_cw5_s33758\\LegacyRenewalApp\\LegacyRenewalApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\baka\\Desktop\\zadanie_refactoring_renewal\\LegacyRenewalApp\\LegacyRenewalApp.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\apbd_cw5_s33758\\LegacyRenewalApp\\LegacyRenewalApp.csproj",
         "projectName": "LegacyRenewalApp",
-        "projectPath": "C:\\Users\\baka\\Desktop\\zadanie_refactoring_renewal\\LegacyRenewalApp\\LegacyRenewalApp.csproj",
-        "packagesPath": "C:\\Users\\baka\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\baka\\Desktop\\zadanie_refactoring_renewal\\LegacyRenewalApp\\obj\\",
+        "projectPath": "C:\\Users\\User\\Desktop\\apbd_cw5_s33758\\LegacyRenewalApp\\LegacyRenewalApp.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\apbd_cw5_s33758\\LegacyRenewalApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\baka\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -38,7 +38,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -73,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

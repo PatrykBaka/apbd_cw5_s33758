@@ -27,19 +27,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\baka\\.nuget\\packages\\": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\baka\\Desktop\\zadanie_refactoring_renewal\\LegacyRenewalAppConsumer\\LegacyRenewalAppConsumer.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Desktop\\apbd_cw5_s33758\\LegacyRenewalAppConsumer\\LegacyRenewalAppConsumer.csproj",
       "projectName": "LegacyRenewalAppConsumer",
-      "projectPath": "C:\\Users\\baka\\Desktop\\zadanie_refactoring_renewal\\LegacyRenewalAppConsumer\\LegacyRenewalAppConsumer.csproj",
-      "packagesPath": "C:\\Users\\baka\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\baka\\Desktop\\zadanie_refactoring_renewal\\LegacyRenewalAppConsumer\\obj\\",
+      "projectPath": "C:\\Users\\User\\Desktop\\apbd_cw5_s33758\\LegacyRenewalAppConsumer\\LegacyRenewalAppConsumer.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\Desktop\\apbd_cw5_s33758\\LegacyRenewalAppConsumer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\baka\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -51,8 +51,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\baka\\Desktop\\zadanie_refactoring_renewal\\LegacyRenewalApp\\LegacyRenewalApp.csproj": {
-              "projectPath": "C:\\Users\\baka\\Desktop\\zadanie_refactoring_renewal\\LegacyRenewalApp\\LegacyRenewalApp.csproj"
+            "C:\\Users\\User\\Desktop\\apbd_cw5_s33758\\LegacyRenewalApp\\LegacyRenewalApp.csproj": {
+              "projectPath": "C:\\Users\\User\\Desktop\\apbd_cw5_s33758\\LegacyRenewalApp\\LegacyRenewalApp.csproj"
             }
           }
         }
@@ -67,7 +67,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "10.0.200"
     },
     "frameworks": {
       "net8.0": {
@@ -106,7 +106,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
