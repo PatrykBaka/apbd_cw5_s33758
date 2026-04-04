@@ -11,6 +11,7 @@ namespace LegacyRenewalApp
         private IInputManager _inputManager;
         private IDiscountService _discountService;
         private IFeeService _feeService;
+        private ITaxService _taxService;
         
         public SubscriptionRenewalService() 
             : this(new LegacyBillingServiceAdapter(), 
@@ -18,18 +19,22 @@ namespace LegacyRenewalApp
                 new CustomerRepository(),
                 new  InputManager(),
                 new DiscountService(),
-                new FeeService())
+                new FeeService(),
+                new TaxService())
         {
         }
 
         public SubscriptionRenewalService(IBillingService billingService, ISubscriptionPlanRepository planRepository, 
-            ICustomerRepository customerRepository,  IInputManager inputManager, IDiscountService discountService,  IFeeService feeService)
+            ICustomerRepository customerRepository,  IInputManager inputManager, IDiscountService discountService,  IFeeService feeService,
+            ITaxService taxService)
         {
             _billingService = billingService;
             _planRepository = planRepository;
             _customerRepository = customerRepository;
             _inputManager = inputManager;
             _discountService =  discountService;
+            _feeService = feeService;
+            _taxService = taxService;
         }
 
         public RenewalInvoice CreateRenewalInvoice(
@@ -75,24 +80,8 @@ namespace LegacyRenewalApp
             decimal paymentFee = paymentFeeResult.paymentFee;
             notes += paymentFeeResult.notes;
 
-            decimal taxRate = 0.20m;
-            if (customer.Country == "Poland")
-            {
-                taxRate = 0.23m;
-            }
-            else if (customer.Country == "Germany")
-            {
-                taxRate = 0.19m;
-            }
-            else if (customer.Country == "Czech Republic")
-            {
-                taxRate = 0.21m;
-            }
-            else if (customer.Country == "Norway")
-            {
-                taxRate = 0.25m;
-            }
-
+            decimal taxRate = _taxService.CalculateTax(customer);
+            
             decimal taxBase = subtotalAfterDiscount + supportFee + paymentFee;
             decimal taxAmount = taxBase * taxRate;
             decimal finalAmount = taxBase + taxAmount;
