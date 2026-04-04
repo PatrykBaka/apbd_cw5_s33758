@@ -10,18 +10,20 @@ namespace LegacyRenewalApp
         private ICustomerRepository _customerRepository;
         private IInputManager _inputManager;
         private IDiscountService _discountService;
+        private IFeeService _feeService;
         
         public SubscriptionRenewalService() 
             : this(new LegacyBillingServiceAdapter(), 
                 new SubscriptionPlanRepository(), 
                 new CustomerRepository(),
                 new  InputManager(),
-                new DiscountService())
+                new DiscountService(),
+                new FeeService())
         {
         }
 
         public SubscriptionRenewalService(IBillingService billingService, ISubscriptionPlanRepository planRepository, 
-            ICustomerRepository customerRepository,  IInputManager inputManager, IDiscountService discountService)
+            ICustomerRepository customerRepository,  IInputManager inputManager, IDiscountService discountService,  IFeeService feeService)
         {
             _billingService = billingService;
             _planRepository = planRepository;
@@ -65,50 +67,13 @@ namespace LegacyRenewalApp
                 notes += "minimum discounted subtotal applied; ";
             }
 
-            decimal supportFee = 0m;
-            if (includePremiumSupport)
-            {
-                if (normalizedPlanCode == "START")
-                {
-                    supportFee = 250m;
-                }
-                else if (normalizedPlanCode == "PRO")
-                {
-                    supportFee = 400m;
-                }
-                else if (normalizedPlanCode == "ENTERPRISE")
-                {
-                    supportFee = 700m;
-                }
+            var supportFeeResult = _feeService.CalculateSupportFee(includePremiumSupport, normalizedPlanCode);
+            decimal supportFee = supportFeeResult.supportFee;
+            notes += supportFeeResult.notes;
 
-                notes += "premium support included; ";
-            }
-
-            decimal paymentFee = 0m;
-            if (normalizedPaymentMethod == "CARD")
-            {
-                paymentFee = (subtotalAfterDiscount + supportFee) * 0.02m;
-                notes += "card payment fee; ";
-            }
-            else if (normalizedPaymentMethod == "BANK_TRANSFER")
-            {
-                paymentFee = (subtotalAfterDiscount + supportFee) * 0.01m;
-                notes += "bank transfer fee; ";
-            }
-            else if (normalizedPaymentMethod == "PAYPAL")
-            {
-                paymentFee = (subtotalAfterDiscount + supportFee) * 0.035m;
-                notes += "paypal fee; ";
-            }
-            else if (normalizedPaymentMethod == "INVOICE")
-            {
-                paymentFee = 0m;
-                notes += "invoice payment; ";
-            }
-            else
-            {
-                throw new ArgumentException("Unsupported payment method");
-            }
+            var paymentFeeResult = _feeService.CalculatePaymentFee(normalizedPaymentMethod,subtotalAfterDiscount,supportFee);
+            decimal paymentFee = paymentFeeResult.paymentFee;
+            notes += paymentFeeResult.notes;
 
             decimal taxRate = 0.20m;
             if (customer.Country == "Poland")
