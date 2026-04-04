@@ -54,7 +54,7 @@ namespace LegacyRenewalApp
             var customer = _customerRepository.GetById(customerId);
             var plan = _planRepository.GetByCode(normalizedPlanCode);
 
-            if (customer.IsActive)
+            if (!customer.IsActive)
             {
                 throw new InvalidOperationException("Inactive customers cannot renew subscriptions");
             }
@@ -109,7 +109,7 @@ namespace LegacyRenewalApp
                 GeneratedAt = DateTime.UtcNow
             };
 
-            LegacyBillingGateway.SaveInvoice(invoice);
+            _billingService.SaveInvoice(invoice);
 
             if (!string.IsNullOrWhiteSpace(customer.Email))
             {
@@ -118,7 +118,7 @@ namespace LegacyRenewalApp
                     $"Hello {customer.FullName}, your renewal for plan {normalizedPlanCode} " +
                     $"has been prepared. Final amount: {invoice.FinalAmount:F2}.";
 
-                LegacyBillingGateway.SendEmail(customer.Email, subject, body);
+                _billingService.SendEmail(customer.Email, subject, body);
             }
 
             return invoice;
